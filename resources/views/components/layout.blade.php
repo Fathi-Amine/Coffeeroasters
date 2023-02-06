@@ -36,12 +36,15 @@
           <a href="#" class="text-xl hover:text-cyan-500 duration-500">BLOG'S</a>
         </li>
   
-        <button class="bg-cyan-400 text-white font-[Poppins] duration-500 px-6 py-2 mx-4 hover:bg-cyan-500 rounded ">
+        <a href="/register" class="bg-cyan-400 text-white font-[Poppins] duration-500 px-6 py-2 mx-4 hover:bg-cyan-500 rounded ">
           Get started
-        </button>
+        </a>
         <h2 class=""></h2>
     </ul>
   </nav>
+  <main>
+    {{$slot}}
+  </main>
   <script>
     function Menu(e){
       let list = document.querySelector('ul');
