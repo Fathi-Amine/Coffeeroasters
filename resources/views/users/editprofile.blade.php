@@ -36,6 +36,7 @@
         <x-signupcard class="h-auto w-full md:w-1/2">
             <form method="POST" action="/reset_password" >
                 @csrf
+                @method('PUT')
                 <h2 class="text-blue-700 text-3xl font-semibold my-4">Change Password</h2>
                 <div>
                     <label for="password" class="text-sm">Current Password</label><br>
