@@ -1,5 +1,7 @@
 <?php
 
+
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 
@@ -22,6 +24,9 @@ Route::get('register',[UserController::class, 'create']);
 Route::post('/users',[UserController::class, 'store']);
 
 Route::get('/login', [UserController::class, 'login']);
-
 Route::post('/authenticate', [UserController::class, 'authenticate']);
+Route::post('/logout',[UserController::class, 'logout']);
+Route::get('users/{user}/editprofile', [UserController::class, 'edit']);
+Route::put('users/{user}', [UserController::class,'update']);
+Route::put('/reset_password',[UserController::class, 'reset']);
 

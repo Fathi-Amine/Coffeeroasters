@@ -47,7 +47,7 @@
             <!-- radio buttons for gender -->
             <!-- Sign up / submit button -->
             <button type="submit" name="" id="signUp" class="bg-blue-700 w-full h-10 cursor-pointer text-white rounded-md hover:bg-blue-600 hover:outline outline-2 outline-blue-600 outline-offset-2 text-sm mt-2">Register</button>
-            <p class="text-xs my-2">Already have a account? <a href="#" class="text-blue-600">Login</a></p>
+            <p class="text-xs my-2">Already have a account? <a href="/login" class="text-blue-600">Login</a></p>
         </form>
     </x-signupcard>
 </x-layout>
