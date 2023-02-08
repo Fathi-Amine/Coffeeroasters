@@ -19,7 +19,6 @@ class PlateFactory extends Factory
         return [
             //
             'title'=>$this->faker->sentence(1),
-            'img'=>$this->faker->image(),
             'category'=>$this->faker->word(),
             'price'=>$this->faker->numberBetween(1,20),
             'description'=>$this->faker->paragraph(5),

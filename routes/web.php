@@ -19,6 +19,17 @@ use App\Http\Controllers\PlateController;
 
 Route::get('/', [PlateController::class,'index']);
 
+Route::get('/plates/create', [PlateController::class,'create']);
+
+Route::post('/plates', [PlateController::class,'store']);
+
+
+Route::get('/plates/{plate}/edit', [PlateController::class, 'edit']);
+
+Route::put('/plates/{plate}', [PlateController::class, 'update']);
+
+Route::delete('/plates/{plate}', [PlateController::class, 'destroy']);
+
 Route::get('register',[UserController::class, 'create']);
 Route::post('/users',[UserController::class, 'store']);
 
