@@ -19,16 +19,16 @@ use App\Http\Controllers\PlateController;
 
 Route::get('/', [PlateController::class,'index']);
 
-Route::get('/plates/create', [PlateController::class,'create']);
+Route::get('/plates/create', [PlateController::class,'create'])->middleware('admin');
 
-Route::post('/plates', [PlateController::class,'store']);
+Route::post('/plates', [PlateController::class,'store'])->middleware('admin');
 
 
-Route::get('/plates/{plate}/edit', [PlateController::class, 'edit']);
+Route::get('/plates/{plate}/edit', [PlateController::class, 'edit'])->middleware('admin');
 
-Route::put('/plates/{plate}', [PlateController::class, 'update']);
+Route::put('/plates/{plate}', [PlateController::class, 'update'])->middleware('admin');
 
-Route::delete('/plates/{plate}', [PlateController::class, 'destroy']);
+Route::delete('/plates/{plate}', [PlateController::class, 'destroy'])->middleware('admin');
 
 Route::get('register',[UserController::class, 'create']);
 Route::post('/users',[UserController::class, 'store']);
@@ -39,4 +39,6 @@ Route::post('/logout',[UserController::class, 'logout']);
 Route::get('users/{user}/editprofile', [UserController::class, 'edit']);
 Route::put('users/{user}', [UserController::class,'update']);
 Route::put('/reset_password',[UserController::class, 'reset']);
+Route::get('/password',[UserController::class, 'show_reset_form']);
+Route::post('/password/send',[UserController::class, 'sendResetLink']);
 

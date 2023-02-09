@@ -20,6 +20,7 @@
                 <p class="text-red-500 text-xs mt-1">{{$message}}</p>
                 @enderror
             </div>
+            <a class="block underline text-blue-600 mt-4" href="/password">Forgot Password</a>
             <button type="submit" name="" id="login" class="bg-blue-700 w-full h-10 cursor-pointer text-white rounded-md hover:bg-blue-600 hover:outline outline-2 outline-blue-600 outline-offset-2 text-sm mt-2">Login</button>
         </form>
     </x-signupcard>

@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -81,5 +83,21 @@ class UserController extends Controller
         $user->password = Hash::make($request->new_password);
         $user->save();
         return back()->with('message', 'password reset successfully');
+    }
+
+    public function show_reset_form(){
+        return view('users.resetpassword');
+    }
+
+    public function sendResetLink(Request $request){
+        $request->validate([
+            'email'=>'required|email|exists:users,email',
+
+        ]);
+        $token = Str::random(64);
+        DB::table('password_resets')->insert([
+            'email'=>$request->email,
+            'tokens'=>$token,
+        ]);
     }
 }
