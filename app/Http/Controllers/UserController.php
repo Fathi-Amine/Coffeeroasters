@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
@@ -99,5 +100,38 @@ class UserController extends Controller
             'email'=>$request->email,
             'tokens'=>$token,
         ]);
+        $action_link = route('reset.form',['token'=>$token, 'email'=>$request->email]);
+        $body = "We see that you requested a password reset For logging to: <b> COFFEROASTERS Menu</b> account associated with $request->email You can reset the password by clicking the link below";
+        Mail::send('users.passreset',['action_link'=>$action_link, 'body'=>$body],function($message) use ($request){
+            $message->from('noreply@youcode.school', 'COFFEEROASTERS');
+            $message->to($request->email, 'Youcode')->subject('Password Reset');
+        });
+        return back()->with('success', 'reset successfull');
+    }
+
+    public function showResetForm(Request $request, $token = null){
+        return view('users.resetform')->with(['token'=>$token, 'email'=>$request->email]);
+    }
+
+    public function passwordReset(Request $request){
+        $request->validate([
+            'email'=>'required|email|exists:users,email',
+            'password'=>'required|confirmed'
+        ]);
+
+        $check_token = DB::table('password_resets')->where([
+            'email'=>$request->email,
+            'tokens'=>$request->token
+        ])->first();
+
+        if(!$check_token){
+            return back()->withInput()->with('fail reset');
+        }else{
+            User::where('email',$request->email)->update(['password'=>Hash::make($request->password)]);
+            DB::table('password_resets')->where(['email'=>$request->email])->delete();
+        }
+
+        return redirect('/login');
+
     }
 }

@@ -35,7 +35,7 @@
           </span>
         </li>
         <li>
-          <a href="/listings/manage" class="hover:text-laravel"><i class="fa-solid fa-gear"></i> Manage Listings</a>
+          <a href="/plates/create" class="hover:text-laravel"><i class="fa-solid fa-gear"></i> Manage Plate</a>
         </li>
         <li>
           <form class="inline" method="POST" action="/logout">
@@ -55,9 +55,9 @@
   <main>
     {{$slot}}
   </main>
-  <footer class="flex justify-center">
+  {{-- <footer class="flex justify-center">
     <a href="/plates/create" class="inline-block bg-cyan-400 text-white font-[Poppins] duration-500 px-6 py-2 m-auto hover:bg-cyan-500 rounded my-5">Add Plate</a>
-  </footer>
+  </footer> --}}
   <script>
     function Menu(e){
       let list = document.querySelector('ul');

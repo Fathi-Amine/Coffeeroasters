@@ -41,4 +41,7 @@ Route::put('users/{user}', [UserController::class,'update']);
 Route::put('/reset_password',[UserController::class, 'reset']);
 Route::get('/password',[UserController::class, 'show_reset_form']);
 Route::post('/password/send',[UserController::class, 'sendResetLink']);
+Route::get('/password/reset/{token}',[UserController::class, 'showResetForm'])->name('reset.form');
+Route::post('/password/send',[UserController::class, 'sendResetLink']);
+Route::post('/password/reset',[UserController::class, 'passwordReset']);
 
